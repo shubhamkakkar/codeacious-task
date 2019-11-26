@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from 'react';
+
+export const components = [
+  {
+    path: "./components/Component1",
+  },
+  {
+    path: "./components/Component2",
+  },
+  {
+    path: "./components/Component3"
+  },
+]
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex", flex: 1, justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+      {
+        components.map(({ path }, key) => {
+          const RandomVariable = lazy(() => import(`${path}`))
+          return (
+            <Suspense {...{ key }} fallback={<div>Loading...</div>}>
+              <RandomVariable />
+            </Suspense>
+          )
+        })
+      }
     </div>
   );
 }
