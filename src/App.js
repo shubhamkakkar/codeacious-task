@@ -1,11 +1,12 @@
 import React, { Suspense, lazy } from 'react';
 
+
 export const components = [
   {
-    path: "./components/Component1",
+    path: "./components/component1/file/node1/node2/root/Component1",
   },
   {
-    path: "./components/Component2",
+    path: "./components/component2/file/node1/node2/Component2",
   },
   {
     path: "./components/Component3"
